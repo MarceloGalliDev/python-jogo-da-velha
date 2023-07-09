@@ -1,2 +1,5 @@
-# python-jogo-da-velha
- jogo da velha criado em python
+# Python-jogo-da-velha
+ Tic-Tac-Toe
+
+## Criamos o esqueleto da aplicação
+    > Definimos as funções.
