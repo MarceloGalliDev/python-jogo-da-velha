@@ -3,15 +3,15 @@ import os
 
 class TicTacToe():
     def __init__(self):
-        self.reset()
+        self.resetar_tabuleiro()
     
     def tabuleiro(self):
-        print('')
-        print('' + self.board[0][0] + ' | ' + self.board[0][1] + ' | ' + self.board[0][2])
-        print('------')
-        print('' + self.board[1][0] + ' | ' + self.board[1][1] + ' | ' + self.board[1][2])
-        print('------')
-        print('' + self.board[2][0] + ' | ' + self.board[2][1] + ' | ' + self.board[2][2])
+        print(' -=tabuleiro=- ')
+        print('  ' + self.board[0][0] + ' | ' + self.board[0][1] + ' | ' + self.board[0][2])
+        print('----------')
+        print('  ' + self.board[1][0] + ' | ' + self.board[1][1] + ' | ' + self.board[1][2])
+        print('----------')
+        print('  ' + self.board[2][0] + ' | ' + self.board[2][1] + ' | ' + self.board[2][2])
     
     def analise_tabuleiro(self):
         dict_vencedor = {}
@@ -77,8 +77,7 @@ class TicTacToe():
                 print(e)
                 continue
         
-        movimento_invalido = False
-        
+            movimento_invalido = False
         self.board[x][y] = 'X'
     
     def computador(self):
@@ -86,12 +85,39 @@ class TicTacToe():
         
         for i in range(3):
             for j in range(3):
-                
+                if self.board[i][j] == '':
+                    lista_computador.append((i, j))
+
+        if len(lista_computador) > 0:
+            x, y = random.choice(lista_computador)
+            self.board[x][y] = 'O'
     
     
     def resetar_tabuleiro(self):
         self.board = [['','',''], ['','',''], ['','','']]
         self.done = ''
 
-self = TicTacToe()
-self.tabuleiro()
+tic_tac = TicTacToe()
+tic_tac.tabuleiro()
+jogar_tictac = 0
+
+while jogar_tictac == 0:
+    os.system('clear')
+    tic_tac.tabuleiro()
+    while tic_tac.done == '':
+        tic_tac.jogador()
+        tic_tac.computador()
+        os.system('clear')
+        tic_tac.tabuleiro()
+        tic_tac.analise_tabuleiro()
+    
+    print('Digite 1 para sair do jogo, ou pressione qualquer tecla para continuar.')
+    
+    jogar_tictac = int(input())
+    if jogar_tictac == 1:
+        break
+    else:
+        tic_tac.resetar_tabuleiro()
+        tic_tac = 0
+        
+    
